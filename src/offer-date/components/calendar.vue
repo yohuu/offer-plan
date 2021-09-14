@@ -1,8 +1,14 @@
 <template>
-    <div id="calendar-wrap">
-        <n-button @click="prevDate">上一月</n-button>
-        <n-button @click="nextDate">下一月</n-button>
-        <span class="current-date">{{ currentDate }}</span>
+    <div id="CalendarWrap">
+        <div class="calendar-header">
+            <n-button-group>
+                <n-button @click="prevDate" ghost round>
+                    上一月
+                </n-button>
+                <n-button @click="nextDate" ghost round>下一月</n-button>
+            </n-button-group>
+            <span class="current-date">{{ currentDate }}</span>
+        </div>
         <div id="calendar" style="height: 800px;"></div>
     </div>
 </template>
@@ -153,8 +159,21 @@ const nextDate = () => {
 }
 </script>
 
-<style>
+<style lang="scss">
 @import './tui-calendar.css'; /* 引入公共样式 */
 @import './tui-time-picker.css';
 @import './tui-date-picker.css';
+#CalendarWrap {
+    .calendar-header {
+        text-align: left;
+        margin-bottom: 10px;
+        .current-date {
+            font-size: 18px;
+            font-weight: 500;
+            position: relative;
+            top: 2px;
+            left: 10px;
+        }
+    }
+}
 </style>

@@ -10,7 +10,7 @@ const props = defineProps({ date: Number, td: Object, th: Object })
 const dateProps: any = computed({
   get: () => props.date,
   set: val => {
-    emit('DateUpdate', { date: val, tdIdx: props.td.idx, thIdx: props.th.key})
+    emit('DateUpdate', { date: val, tdIdx: props?.td?.idx, thIdx: props?.th?.key})
   }
 })
 </script>

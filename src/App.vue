@@ -29,7 +29,7 @@
     </tbody>
   </n-table>
   <n-button @click="addOneCompany">添加新公司</n-button>
-  <v-calendar />
+  <v-calendar :schedules="tbody.tbodyData" :schedules-frame="theaderData"/>
 </template>
 
 <script setup lang="ts">
@@ -57,6 +57,12 @@ const theaderData: any[] = [
     textState: 'W'
   },
   {
+    key: 'Interview',
+    label: '面试',
+    visible: true,
+    textState: 'W'
+  },
+  {
     key: 'EditCell',
     label: '操作项',
     visible: true,
@@ -79,7 +85,7 @@ watch(
   { deep: true }
 )
 const updateDate = (val: any) => {
-  tbody.tbodyData.forEach((item, idx) => {
+  tbody.tbodyData.forEach((item: any) => {
     if (item.idx === val.tdIdx) item[val.thIdx] = val.date
   })
 }
@@ -88,12 +94,13 @@ const addOneCompany = () => {
     idx: tbody.tbodyData.length ? tbody.tbodyData[tbody.tbodyData.length-1].idx + 1 : 0,
     Company: 'mt',
     ResumeDelivery: 1631448353000,
-    WrittenExamination: 1631448363000
+    WrittenExamination: 1631448363000,
+    Interview: 1631448373000
   }
   tbody.tbodyData.push(defaultTbodyData)
 }
-const delOneCompany = (tdIdx) => {
-  tbody.tbodyData = tbody.tbodyData.filter((item) => {
+const delOneCompany = (tdIdx: any) => {
+  tbody.tbodyData = tbody.tbodyData.filter((item: any) => {
     return tdIdx !== item.idx
   })
 }
@@ -106,6 +113,7 @@ const delOneCompany = (tdIdx) => {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
+  padding: 40px;
 }
 </style>
